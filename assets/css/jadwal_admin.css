@@ -1,0 +1,76 @@
+/* Styling halaman Kelola Jadwal */
+.content {
+    padding: 20px;
+    background: #F0F3FA;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Judul */
+.content h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Form Tambah Jadwal */
+.form-jadwal {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.form-jadwal input,
+.form-jadwal select,
+.form-jadwal textarea,
+.form-jadwal button {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* tombol */
+.form-jadwal button {
+    background: #BAAEE0;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-jadwal button:hover {
+    background: #9c90d9;
+}
+
+/* Tabel */
+.tbl {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.tbl th {
+    background: #BAAEE0;
+    color: #333;
+    padding: 10px;
+    text-align: left;
+}
+
+.tbl td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tbl tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.tbl tr:hover {
+    background: #f1f1f1;
+}
+
+.tbl td:last-child {
+    white-space: nowrap;
+}

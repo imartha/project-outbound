@@ -1,0 +1,105 @@
+/* ====== FORM CONTAINER ====== */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* horizontal center */
+  justify-content: center; /* vertical center */
+  min-height: 80vh;
+  text-align: center;
+}
+
+.content h2 {
+  margin-bottom: 15px;
+  color: #4A4A6A;
+}
+
+/* ====== FORM STYLE ====== */
+.content form {
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+}
+
+.content form input[type="text"],
+.content form input[type="tel"],
+.content form select {
+  width: 100%;
+  padding: 8px 12px;        /* lebih kecil */
+  margin: 5px 0 10px 0;     /* lebih rapat */
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.3s ease;
+  box-sizing: border-box;
+}
+
+.content form input:focus,
+.content form select:focus {
+  border-color: #8b6fda;
+  outline: none;
+}
+
+/* ====== BUTTON WRAPPER ====== */
+.form-actions {
+  display: flex;
+  justify-content: space-between;  /* Simpan kiri, Batal kanan */
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* ====== BUTTON STYLE ====== */
+.content form button {
+  padding: 10px 16px;
+  background: #8b6fda;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.content form button:hover {
+  background: #7258c9;
+}
+
+.content form a {
+  padding: 9px 14px;
+  border-radius: 6px;
+  background: #f0f0f0;
+  color: #444;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.content form a:hover {
+  background: #ddd;
+}
+
+.content form select {
+  width: 100%;
+  padding: 8px 12px;
+  margin: 5px 0 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border 0.3s ease;
+  box-sizing: border-box;
+  background-color: #fff;   /* sama dengan input */
+  appearance: none;         /* hilangkan default arrow browser */
+  -webkit-appearance: none; /* untuk Safari/Chrome */
+  -moz-appearance: none;    /* untuk Firefox */
+}
+
+/* optional: tambahkan icon panah custom */
+.content form select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'12'%20height%3D'8'%20viewBox%3D'0%200%2012%208'%20xmlns%3D'http://www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M1%201L6%206L11%201'%20stroke%3D'%23999'%20stroke-width%3D'2'%20fill%3D'none'%20/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+}

@@ -1,0 +1,114 @@
+/* Container utama */
+.content {
+    padding: 20px;
+    background: #F0F3FA;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Judul */
+.content h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Form Tambah */
+.form-biaya {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-biaya input,
+.form-biaya select,
+.form-biaya button {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.form-biaya button {
+    background: #BAAEE0;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.form-biaya button:hover {
+    background: #9c90d9;
+    color: #fff;
+}
+
+/* Tabel */
+.tbl {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tbl th {
+    background: #BAAEE0;
+    color: #333;
+    padding: 10px;
+    text-align: left;
+}
+
+.tbl td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tbl tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.tbl tr:hover {
+    background: #f1f1f1;
+}
+
+.tbl td:last-child {
+    white-space: nowrap;
+}
+
+/* Tombol Hapus */
+.tbl a {
+    display: inline-block;
+    padding: 5px 10px;
+    background: #ff6b6b;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.tbl a:hover {
+    background: #e65a5a;
+}
+
+/* Form Update */
+.tbl form input,
+.tbl form select,
+.tbl form button {
+    margin: 2px 0;
+    padding: 5px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.tbl form button {
+    background: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+.tbl form button:hover {
+    background: #45a049;
+}

@@ -1,0 +1,230 @@
+/* Layout dasar */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #F0F3FA; /* warna background utama */
+    color: #333;
+}
+
+.layout {
+    display: flex;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  width: 240px;
+  background: #9c90c9;           /* Indigo elegan */
+  color: #fff;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  padding-top: 20px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.1);  /* sedikit bayangan */
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 6px;
+}
+
+.sidebar ul li a {
+  color: #E0E7FF;                /* teks ungu muda */
+  text-decoration: none;
+  display: block;
+  padding: 12px 20px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background: #9c90c9;           /* warna hover lebih gelap */
+  color: #fff;
+}
+
+
+/* supaya isi main tidak ketiban topbar */
+.main {
+  margin-left: 240px;
+  padding: 80px 20px 20px;  /* kasih padding top lebih besar (80px) buat space topbar */
+  background: #F9FAFB;
+  min-height: 100vh;
+}
+
+
+/* === TOPBAR === */
+.topbar {
+  background: #fff;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #E5E7EB;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+
+  margin-left: 240px;
+  width: calc(100% - 240px);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.topbar .container {
+  width: 100%;
+  max-width: 1200px;   /* batas lebar biar gak mepet kanan */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+.topbar .brand {
+  font-size: 20px;
+  font-weight: bold;
+  color: #4A4A6A;
+}
+
+.topbar .user-info {
+  font-size: 14px;
+  color: #333;
+  padding-right: 40px;   /* geser ke kiri */
+}
+
+
+.topbar .user-info a {
+  margin-left: 8px;
+  color: #6B46C1;   /* ungu nuansa #BAAEE0 */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.topbar .user-info a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* === WELCOME TEXT === */
+
+.content {
+  flex: 1;
+  padding: 0;
+  background: #F0F3FA;
+  margin-top: 0;
+}
+
+.content.full-table {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.content.full-table.tbl {
+  border-radius: 0;
+  width: 100%;
+}
+
+.content h2,
+.content h3 {
+  text-align: left;        /* rata kiri */
+  margin-bottom: 20px;
+  color: #4A4A6A;
+}
+
+/* === CARDS (Statistik) === */
+.cards {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.card {
+    flex: 1;
+    min-width: 220px;          /* biar tidak terlalu kecil */
+    background: #fff;
+    padding: 30px 25px;        /* padding lebih besar */
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+}
+
+.card strong {
+    display: block;
+    font-size: 28px;          /* angka lebih besar */
+    margin-top: 12px;
+    color: #4a3f75;
+    font-weight: bold;
+}
+
+
+/* Quick Links */
+.quick-links {
+    margin-top: 20px;
+}
+.quick-links .btn {
+    display: inline-block;
+    margin: 8px;
+    padding: 10px 18px;
+    background: #BAAEE0;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+.quick-links .btn:hover {
+    background: #9c90c9;
+}
+/* Tabel di Dashboard */
+.tbl {
+    width: 100%;                  /* penuh lebar konten */
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    table-layout: auto;           /* biar kolom fleksibel */
+}
+
+.tbl th, .tbl td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+    text-align: left;
+}
+
+.tbl th {
+    background: #BAAEE0;
+    color: #fff;
+    font-weight: bold;
+}
+
+.tbl tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* kolom pertama (#) lebih kecil */
+.tbl th:first-child,
+.tbl td:first-child {
+    width: 60px;
+    text-align: center;
+}

@@ -1,0 +1,49 @@
+/* Styling halaman Riwayat Pembayaran */
+.content {
+    padding: 20px;
+    background: #F0F3FA;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Judul */
+.content h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Tabel */
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.content th {
+    background: #BAAEE0;
+    color: #333;
+    padding: 10px;
+    text-align: left;
+}
+
+.content td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.content tr:nth-child(even) {
+    background: #fafafa;
+}
+
+.content tr:hover {
+    background: #f1f1f1;
+}
+
+/* Tambahan: tampilan angka uang */
+.content td:nth-child(2) {
+    font-weight: bold;
+    color: #2e8b57;
+}

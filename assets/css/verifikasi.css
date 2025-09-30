@@ -1,0 +1,54 @@
+/* Styling halaman Verifikasi Pembayaran */
+.content {
+    padding: 20px;
+    background: #F0F3FA;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Judul halaman */
+.content h2 {
+    margin-bottom: 50px;
+    color: #333;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Tabel pembayaran */
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.content th {
+    background: #BAAEE0;
+    color: #333;
+    padding: 10px;
+    text-align: left;
+}
+
+.content td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.content tr:hover {
+    background: #f9f9f9;
+}
+
+/* Link lihat bukti transfer */
+.content a {
+    color: #6A5ACD;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 5px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.content a:hover {
+    background: #E6E6FA;
+}
+

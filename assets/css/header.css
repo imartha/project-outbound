@@ -1,0 +1,37 @@
+/* Header / Topbar */
+.topbar {
+    background-color: #BAAEE0; /* ungu lembut */
+    color: #fff;
+    padding: 8px 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.topbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar .brand {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    color: #fff;
+}
+
+.topbar .user-info {
+    font-size: 14px;
+    color: #fff;
+}
+
+.topbar .user-info a {
+    color: #F0F3FA; /* biru muda */
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 8px;
+    transition: color 0.3s;
+}
+
+.topbar .user-info a:hover {
+    color: #fff;
+}
