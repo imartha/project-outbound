@@ -1,0 +1,199 @@
+/* ===============================
+   REGISTER PAGE - TRANSPARAN STYLE
+   (selaras dengan login.css)
+=================================*/
+:root {
+  --primary: #003BB5;
+  --accent: #002f8e;
+  --text-light: #fff;
+  --text-dark: #333;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('../images/outbound3.jpg') no-repeat center center/cover;
+  position: relative;
+}
+
+/* Overlay agar background tidak terlalu terang */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+}
+
+/* Kotak utama form register */
+.login-box {
+  position: relative;
+  z-index: 1;
+  width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 32px 30px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+  text-align: center;
+  color: var(--text-light);
+  animation: fadeInUp 0.7s ease-out;
+}
+
+/* Scroll lembut jika form panjang */
+.login-box::-webkit-scrollbar {
+  width: 6px;
+}
+.login-box::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+}
+
+/* Judul */
+.login-box h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* Label */
+.login-box label {
+  display: block;
+  text-align: left;
+  margin: 10px 0 6px;
+  color: #f0f0f0;
+  font-size: 13.5px;
+}
+
+/* Input field */
+.login-box input[type="text"],
+.login-box input[type="password"],
+.login-box select,
+.login-box textarea {
+  width: 100%;
+  height: 45px; /* sama tinggi dengan tombol */
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  margin-bottom: 14px;
+  transition: all 0.3s ease;
+}
+
+/* Textarea lebih tinggi */
+.login-box textarea {
+  height: 80px;
+  resize: none;
+  padding: 10px 12px;
+}
+
+/* Dropdown */
+.login-box select {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Placeholder */
+.login-box input::placeholder,
+.login-box textarea::placeholder {
+  color: #ccc;
+  font-size: 14px;
+}
+
+/* Focus efek */
+.login-box input:focus,
+.login-box textarea:focus,
+.login-box select:focus {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 8px rgba(0, 59, 181, 0.4);
+}
+
+/* Tombol daftar */
+.login-box button {
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-box button:hover {
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  transform: scale(1.02);
+}
+
+/* Link bawah */
+.login-box p {
+  color: #ddd;
+  font-size: 13px;
+}
+.login-box a {
+  color: #66a6ff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.login-box a:hover {
+  text-decoration: underline;
+}
+
+/* Pesan error */
+.login-box div[style*="#b00020"] {
+  color: #ff6b6b;
+  font-size: 13px;
+  text-align: left;
+}
+
+/* Dropdown */
+.login-box select {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+/* Warna teks dalam pilihan dropdown */
+.login-box select option {
+  background: #ffffff;     /* latar putih saat dibuka */
+  color: #000000;          /* teks hitam agar jelas */
+}
+
+
+/* Animasi form muncul */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsif untuk mobile */
+@media (max-width: 480px) {
+  .login-box {
+    width: 90%;
+    padding: 26px 20px;
+  }
+}

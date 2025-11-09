@@ -1,55 +1,89 @@
 <?php
-include "../utils/auth_check.php";
-include "../koneksi.php";
-$page_title = "Dashboard Peserta";
+// Pastikan session aktif
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
-$user_id = $_SESSION['user_id'];
+include '../koneksi.php';
+include '../utils/auth_check.php';
+include '../templates/sidebar_peserta.php';
+include '../templates/header.php';
 
-// ambil data peserta sesuai user_id
-$stmt = $koneksi->prepare("SELECT * FROM peserta WHERE user_id = ?");
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$peserta = $stmt->get_result()->fetch_assoc();
+// Ambil data user
+$user_id = intval($_SESSION['user_id']);
+$username = $_SESSION['username'] ?? 'Peserta';
 
-// cek status pembayaran terakhir
-$stmt2 = $koneksi->prepare("SELECT IFNULL(SUM(amount_paid),0) as paid FROM payment_history WHERE user_id = ?");
-$stmt2->bind_param("i", $user_id);
-$stmt2->execute();
-$paid = $stmt2->get_result()->fetch_assoc()['paid'] ?? 0;
+// Ambil data peserta
+$peserta_query = $koneksi->query("SELECT * FROM peserta WHERE id = {$user_id} LIMIT 1");
+$peserta = ($peserta_query && $peserta_query->num_rows > 0) ? $peserta_query->fetch_assoc() : null;
+$nama = $peserta['full_name'] ?? $username;
+
+// Ambil data pembayaran
+$payRes = $koneksi->query("
+    SELECT 
+        (SELECT IFNULL(SUM(amount_paid), 0) 
+         FROM payment_history 
+         WHERE user_id = {$user_id} AND status='approved') AS total_bayar,
+        (SELECT status 
+         FROM payment_history 
+         WHERE user_id = {$user_id} 
+         ORDER BY created_at DESC LIMIT 1) AS last_status
+");
+$payRow = $payRes ? $payRes->fetch_assoc() : ['total_bayar' => 0, 'last_status' => null];
+$total_bayar = $payRow['total_bayar'] ?? 0;
+$status_pembayaran = $payRow['last_status'] ?? 'Belum Ada Pembayaran';
+
+$total_biaya = 200000;
+$sisa = $total_biaya - $total_bayar;
 ?>
-<?php include "../templates/header.php"; ?>
-<div class="layout">
-    <?php include "../templates/sidebar_peserta.php"; ?>
-    <main class="content">
-        <h2>Selamat datang, <?= htmlspecialchars($_SESSION['username']) ?></h2>
 
-        <div class="profile-card">
-            <img src="/assets/img/<?= ($peserta['profile_picture'] ?? 'default_male.png') ?>" alt="pp" width="120">
-            <div>
-                <h3><?= htmlspecialchars($peserta['full_name'] ?? '—') ?></h3>
-                <p>HP: <?= htmlspecialchars($peserta['phone'] ?? '—') ?></p>
-                <p>Sekolah: <?= htmlspecialchars($peserta['nama_sekolah'] ?? '—') ?></p>
-                <p>Gender: <?= ($peserta['gender'] === 'L') ? 'Laki-laki' : 'Perempuan' ?></p>
-            </div>
-        </div>
+<link rel="stylesheet" href="../assets/css/dashboard_peserta.css">
 
-        <section>
-            <h3>Status Pembayaran</h3>
-            <p>Sudah dibayar: <strong>Rp <?= number_format($paid,0,',','.') ?></strong></p>
-            <p><a href="/peserta/pembayaran.php">Lakukan Pembayaran / Upload Bukti</a></p>
-        </section>
+<main class="content">
+  <h2>Halo, <?= htmlspecialchars($nama) ?> 👋</h2>
+  <p>Selamat datang di halaman dashboard peserta Outbound PKL LPK Cipta Tungga Indonesia.</p>
 
-        <section>
-            <h3>Ringkasan Jadwal</h3>
-            <ul>
-                <?php
-                $r = $koneksi->query("SELECT tanggal, kegiatan, lokasi FROM jadwal_kegiatan ORDER BY tanggal LIMIT 5");
-                while ($row = $r->fetch_assoc()):
-                ?>
-                <li><?= date('d M Y', strtotime($row['tanggal'])) ?> — <?= htmlspecialchars($row['kegiatan']) ?> (<?= htmlspecialchars($row['lokasi']) ?>)</li>
-                <?php endwhile; ?>
-            </ul>
-        </section>
-    </main>
-</div>
-<?php include "../templates/footer.php"; ?>
+  <!-- CARD INFORMASI -->
+  <div class="cards">
+    <div class="card">
+      <strong>Informasi Profil</strong>
+      <p><?= htmlspecialchars($peserta['full_name'] ?? '-') ?></p>
+    </div>
+
+    <div class="card">
+      <strong>Sudah Dibayar</strong>
+      <p>Rp <?= number_format($total_bayar, 0, ',', '.') ?></p>
+    </div>
+
+    <div class="card">
+      <strong>Status Bayar</strong>
+      <?php if ($sisa <= 0): ?>
+        <span class="status-badge status-lunas">LUNAS ✅</span>
+      <?php elseif ($status_pembayaran === 'pending'): ?>
+        <span class="status-badge status-pending">Menunggu Verifikasi</span>
+      <?php elseif ($status_pembayaran === 'rejected'): ?>
+        <span class="status-badge status-reject">Ditolak ❌</span>
+      <?php else: ?>
+        <span class="status-badge status-none">Belum Bayar</span>
+      <?php endif; ?>
+    </div>
+  </div>
+</main>
+  <!-- PENJELASAN KEGIATAN -->
+  <section>
+    <h3>Tentang Kegiatan Outbound</h3>
+    <p>
+      Kegiatan <strong>Outbound PKL</strong> ini bertujuan untuk meningkatkan kerja sama, kepemimpinan,
+      serta membangun semangat kebersamaan antar peserta. Melalui kegiatan outdoor dan tantangan kelompok,
+      peserta diharapkan dapat mengembangkan soft skill, memperkuat solidaritas, dan mendapatkan pengalaman
+      baru yang menyenangkan di alam terbuka.
+    </p>
+
+    <div class="gallery">
+      <div class="img-box"><img src="../assets/images/outbound2.jpg" alt="Kegiatan 1"></div>
+      <div class="img-box"><img src="../assets/images/outbound3.jpg" alt="Kegiatan 2"></div>
+      <div class="img-box"><img src="../assets/images/outbound4.jpg" alt="Kegiatan 3"></div>
+      <div class="img-box"><img src="../assets/images/outbound1.jpg" alt="Kegiatan 4"></div>
+    </div>
+  </section>
+

@@ -1,49 +1,89 @@
-/* Styling halaman Riwayat Pembayaran */
-.content {
-    padding: 20px;
-    background: #F0F3FA;
-    border-radius: 10px;
-    margin-top: 20px;
+
+.content h2{
+  margin:0 0 14px;
+  color:#003BB5;
+  font-weight:800;
+  font-size:clamp(20px,2.1vw,26px);
 }
 
-/* Judul */
-.content h2 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 22px;
-    font-weight: bold;
+/* ===== Tabel ===== */
+.tbl{
+  width:100%;
+  border-collapse:collapse;
+  min-width:820px;                 /* 4 kolom cukup lega */
+  table-layout:fixed;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  margin-top:10px;
+}
+.tbl th, .tbl td{
+  padding:14px 16px;
+  border-bottom:1px solid #eee;
+  font-size:14.5px;
+  color:#1f2937;
+  vertical-align:middle;
+  text-align:left;
+  min-height:48px;
 }
 
-/* Tabel */
-.content table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+/* THEAD biru + sticky, tidak pecah kata */
+.tbl thead th{
+  background:#004DE6 !important;
+  color:#fff !important;
+  font-weight:800;
+  font-size:15px;
+  border-bottom:1px solid #003BB5;
+  position:sticky; top:0; z-index:1;
+  white-space:nowrap; overflow-wrap:normal; word-break:normal;
 }
 
-.content th {
-    background: #BAAEE0;
-    color: #333;
-    padding: 10px;
-    text-align: left;
+/* Body boleh wrap */
+.tbl td{ overflow-wrap:anywhere; }
+
+/* Zebra */
+.tbl tbody tr:nth-child(even) td{ background:#FAFAFA; }
+
+/* Perataan kolom */
+.tbl th:nth-child(1), .tbl td:nth-child(1){ width:260px; }                                  /* Username */
+.tbl th:nth-child(2), .tbl td:nth-child(2){
+  width:160px; text-align:right; font-variant-numeric:tabular-nums;                          /* Jumlah */
+}
+.tbl th:nth-child(3), .tbl td:nth-child(3){
+  width:180px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:14px;            /* Tanggal */
+}
+.tbl th:nth-child(4), .tbl td:nth-child(4){ width:140px; }                                   /* Metode */
+
+/* Baris tanpa data */
+.tbl .no-data, .no-data{
+  text-align:center; color:#6b7280; padding:16px; font-style:italic;
 }
 
-.content td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-.content tr:nth-child(even) {
-    background: #fafafa;
+.btn-cetak {
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: 8px 14px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.btn-cetak:hover {
+  background-color: #0056b3;
 }
 
-.content tr:hover {
-    background: #f1f1f1;
-}
 
-/* Tambahan: tampilan angka uang */
-.content td:nth-child(2) {
-    font-weight: bold;
-    color: #2e8b57;
+/* Responsive */
+@media (max-width:640px){
+  .tbl{ min-width:720px; }
+  .tbl th, .tbl td{ padding:10px 12px; font-size:13.5px; }
 }

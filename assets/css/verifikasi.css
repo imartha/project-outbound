@@ -1,54 +1,171 @@
-/* Styling halaman Verifikasi Pembayaran */
-.content {
-    padding: 20px;
-    background: #F0F3FA;
-    border-radius: 10px;
-    margin-top: 20px;
+
+html, body { background:#F4F7FF; }
+.main { background:#F4F7FF; }
+.main > .content,
+.content{
+  max-width:1080px;
+}
+.content--tight{ max-width:1080px; }
+@media (max-width:1024px){
+  .main > .content, .content{ padding-left:24px; }
 }
 
-/* Judul halaman */
-.content h2 {
-    margin-bottom: 50px;
-    color: #333;
-    font-size: 22px;
-    font-weight: bold;
+/* --- Judul --- */
+.content h2{
+  margin:0 0 14px;
+  color:#003BB5;
+  font-weight:800;
+  font-size:clamp(20px,2.1vw,26px);
 }
 
-/* Tabel pembayaran */
-.content table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+/* =========================
+   FORM CARI
+========================= */
+.form-cari{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin:10px 0 14px;
+}
+.form-cari input[type="text"]{
+  padding:10px 12px;
+  border:1px solid #D1D5DB;
+  border-radius:10px;
+  min-width:260px;
+  font-size:14.5px;
+  background:#fff;
+  outline:none;
+  transition:border-color .15s, box-shadow .15s;
+}
+.form-cari input[type="text"]:focus{
+  border-color:#004DE6;
+  box-shadow:0 0 0 3px rgba(0,77,230,.12);
+}
+.btn-cari, .btn-reset{
+  padding:10px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14.5px;
+  line-height:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition:transform .05s, filter .15s, background .2s, box-shadow .2s;
+}
+.btn-cari{ background:#004DE6; color:#fff; box-shadow:0 4px 12px rgba(0,77,230,.18); }
+.btn-cari:hover{ background:#003BB5; box-shadow:0 6px 16px rgba(0,59,181,.22); }
+.btn-cari:active{ transform:translateY(1px); }
+.btn-reset{ background:#fff; color:#111827; border-color:#D1D5DB; }
+.btn-reset:hover{ filter:brightness(0.98); }
+
+/* =========================
+   TABEL
+========================= */
+.tbl{
+  width:100%;
+  border-collapse:collapse;
+  min-width:900px;                         /* 8 kolom lega */
+  table-layout:fixed;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  overflow:hidden;                         /* aktifkan radius */
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  margin-top:6px;
 }
 
-.content th {
-    background: #BAAEE0;
-    color: #333;
-    padding: 10px;
-    text-align: left;
+/* sel */
+.tbl th, .tbl td{
+  padding:14px 16px;
+  border-bottom:1px solid #eee;
+  font-size:14.5px;
+  color:#1f2937;
+  vertical-align:middle;
+  text-align:left;
+  min-height:48px;
 }
 
-.content td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+/* === THEAD: biru, sticky, TIDAK membungkus kata === */
+.tbl thead th{
+  background:#004DE6 !important;
+  color:#fff !important;
+  font-weight:800;
+  white-space:nowrap;
 }
 
-.content tr:hover {
-    background: #f9f9f9;
-}
+/* body boleh membungkus isi panjang */
+.tbl td{ overflow-wrap:anywhere; }
 
-/* Link lihat bukti transfer */
-.content a {
-    color: #6A5ACD;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 5px 8px;
-    border-radius: 4px;
-    transition: background 0.2s;
-}
+/* zebra */
+.tbl tbody tr:nth-child(even) td{ background:#FAFAFA; }
 
-.content a:hover {
-    background: #E6E6FA;
-}
+/* lebar kolom */
+.tbl th:nth-child(1), .tbl td:nth-child(1){ width:170px; }               /* Nama */
+.tbl th:nth-child(2), .tbl td:nth-child(2){ width:140px; text-align:right; font-variant-numeric:tabular-nums; } /* Jumlah */
+.tbl th:nth-child(3), .tbl td:nth-child(3){ width:160px; text-align:right; font-variant-numeric:tabular-nums; } /* Dibayar */
+.tbl th:nth-child(4), .tbl td:nth-child(4){ width:120px; }               /* Metode */
+.tbl th:nth-child(5), .tbl td:nth-child(5){
+  width:160px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:14px; color:#374151;
+} /* Tanggal */
+.tbl th:nth-child(6), .tbl td:nth-child(6){ width:120px; }               /* Bukti */
+.tbl th:nth-child(7), .tbl td:nth-child(7){ width:120px; }               /* Status */
+.tbl th:nth-child(8), .tbl td:nth-child(8){ width:200px; }               /* Aksi */
 
+/* Link bukti = tombol ringan */
+.tbl td:nth-child(6) a{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:10px;
+  background:#F3F4F6;
+  color:#111827;
+  text-decoration:none;
+  border:1px solid #E5E7EB;
+  font-weight:600;
+  font-size:13.5px;
+  transition: filter .15s, transform .05s;
+}
+.tbl td:nth-child(6) a:hover{ filter:brightness(0.97); }
+.tbl td:nth-child(6) a:active{ transform:translateY(1px); }
+
+/* Kolom Aksi: rapi & center vertikal */
+.tbl td:nth-child(8){
+  display:grid;
+  grid-auto-flow: column;
+  justify-content:start;
+  align-items:center;
+  gap:10px;
+  padding-top:12px;
+  padding-bottom:12px;
+}
+.tbl td:nth-child(8) a{
+  display:inline-block;
+  padding:9px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:13.5px;
+  line-height:1.2;
+  white-space:nowrap;
+  border:1px solid transparent;
+  transition: transform .05s, filter .15s;
+}
+.tbl td:nth-child(8) a[href*="aksi=setujui"]{ background:#E6F6EE; color:#0F5132; border-color:#A3E2C1; }
+.tbl td:nth-child(8) a[href*="aksi=tolak"]  { background:#FEE2E2; color:#B91C1C; border-color:#FCA5A5; }
+.tbl td:nth-child(8) a:hover{ filter:brightness(0.98); }
+.tbl td:nth-child(8) a:active{ transform:translateY(1px); }
+
+/* baris info kosong */
+.tbl .no-data, .no-data{ text-align:center; color:#6b7280; padding:16px; font-style:italic; }
+
+/* =========================
+   Responsive tambahan
+========================= */
+@media (max-width:640px){
+  .tbl{ min-width:840px; }
+  .tbl th, .tbl td{ padding:10px 12px; font-size:13.5px; }
+}

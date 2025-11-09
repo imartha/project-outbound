@@ -4,7 +4,6 @@ include '../utils/auth_check.php';
 include '../templates/header.php';
 include '../templates/sidebar_admin.php';
 
-// Proses simpan data
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['simpan'])) {
     $nama    = trim($_POST['full_name']);
     $sekolah = trim($_POST['nama_sekolah']);

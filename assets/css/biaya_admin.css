@@ -1,114 +1,203 @@
-/* Container utama */
-.content {
-    padding: 20px;
-    background: #F0F3FA;
-    border-radius: 10px;
-    margin-top: 20px;
+
+.content h2{
+  margin:0 0 14px;
+  color:#003BB5;
+  font-weight:800;
+  font-size:clamp(20px,2.1vw,26px);
+}
+.card h3{
+  margin:0 0 12px;
+  color:#003BB5;
+  font-weight:800;
+  font-size:clamp(16px,1.8vw,18px);
 }
 
-/* Judul */
-.content h2 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 22px;
-    font-weight: bold;
+/* =========================
+   Kartu & Alert
+========================= */
+.card{
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  padding:18px 20px;
+  margin:14px 0;
+}
+.alert{
+  background:#E6F6EE;
+  color:#0F5132;
+  border:1px solid #A3E2C1;
+  border-radius:12px;
+  padding:12px 14px;
+  font-size:14px;
+  margin:10px 0 14px;
 }
 
-/* Form Tambah */
-.form-biaya {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+/* =========================
+   Form Pengaturan Utama
+========================= */
+.form-row{
+  display:grid;
+  grid-template-columns: 220px 1fr;
+  gap:12px;
+  align-items:center;
+  margin:10px 0;
+}
+.form-row label{
+  color:#374151;
+  font-weight:600;
+  font-size:14.5px;
+}
+.form-row input[type="text"],
+.form-row input[type="number"]{
+  padding:10px 12px;
+  border:1px solid #D1D5DB;
+  border-radius:10px;
+  font-size:14.5px;
+  outline:none;
+  background:#fff;
+  transition:border-color .15s, box-shadow .15s;
+}
+.form-row input:focus{
+  border-color:#004DE6;
+  box-shadow:0 0 0 3px rgba(0,77,230,.12);
+}
+.form-actions{
+  margin-top:12px;
+  display:flex;
+  justify-content:flex-end;
 }
 
-.form-biaya input,
-.form-biaya select,
-.form-biaya button {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
+/* Tombol */
+.btn-primary,
+.btn-secondary,
+.btn-danger{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:700;
+  font-size:14.5px;
+  line-height:1;
+  text-decoration:none;
+  cursor:pointer;
+  border:1px solid transparent;
+  transition: transform .05s, background .2s, box-shadow .2s, filter .15s;
+}
+.btn-primary{
+  background:#004DE6; color:#fff;
+  box-shadow:0 4px 12px rgba(0,77,230,.18);
+}
+.btn-primary:hover{ background:#003BB5; box-shadow:0 6px 16px rgba(0,59,181,.22); }
+.btn-primary:active{ transform:translateY(1px); }
+
+.btn-secondary{
+  background:#F3F4F6; color:#111827; border-color:#E5E7EB;
+}
+.btn-secondary:hover{ filter:brightness(0.98); }
+.btn-secondary:active{ transform:translateY(1px); }
+
+.btn-danger{
+  background:#FEE2E2; color:#B91C1C; border-color:#FCA5A5;
+}
+.btn-danger:hover{ filter:brightness(0.97); }
+.btn-danger:active{ transform:translateY(1px); }
+
+/* =========================
+   Form Tambah Item (inline)
+========================= */
+.inline-form{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin:6px 0 12px;
+}
+.inline-form input[type="text"]{
+  flex:1 1 320px;
+  padding:10px 12px;
+  border:1px solid #D1D5DB;
+  border-radius:10px;
+  font-size:14.5px;
+  outline:none;
+  transition:border-color .15s, box-shadow .15s;
+}
+.inline-form input[type="text"]:focus{
+  border-color:#004DE6;
+  box-shadow:0 0 0 3px rgba(0,77,230,.12);
 }
 
-.form-biaya button {
-    background: #BAAEE0;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
+/* =========================
+   Tabel Item Rincian
+========================= */
+.table-wrap{
+  width:100%;
+  overflow:auto;
+  border-radius:14px;
+}
+.tbl{
+  width:100%;
+  border-collapse:collapse;
+  min-width:720px;                 /* 3 kolom */
+  table-layout:fixed;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+}
+.tbl th, .tbl td{
+  padding:14px 16px;
+  border-bottom:1px solid #eee;
+  font-size:14.5px;
+  color:#1f2937;
+  vertical-align:middle;
+  text-align:left;
+  min-height:48px;
 }
 
-.form-biaya button:hover {
-    background: #9c90d9;
-    color: #fff;
+/* THEAD biru + sticky + tidak pecah kata */
+.tbl thead th{
+  background:#004DE6 !important;
+  color:#fff !important;
+  font-weight:800;
+  font-size:15px;
+  border-bottom:1px solid #003BB5;
+  position:sticky; top:0; z-index:1;
+  white-space:nowrap; overflow-wrap:normal; word-break:normal;
 }
 
-/* Tabel */
-.tbl {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    overflow: hidden;
+/* Body boleh wrap */
+.tbl td{ overflow-wrap:anywhere; }
+
+/* Zebra */
+.tbl tbody tr:nth-child(even) td{ background:#FAFAFA; }
+
+/* Lebar kolom spesifik */
+.tbl th:nth-child(1), .tbl td:nth-child(1){ width:60px; text-align:center; } /* # */
+.tbl th:nth-child(3), .tbl td:nth-child(3){ width:120px; }                   /* Aksi */
+
+/* Kolom Aksi rapi */
+.tbl td:nth-child(3){
+  display:grid;
+  grid-auto-flow: column;
+  align-items:center;
+  justify-content:flex-start;
+  gap:10px;
+  padding-top:12px;
+  padding-bottom:12px;
 }
 
-.tbl th {
-    background: #BAAEE0;
-    color: #333;
-    padding: 10px;
-    text-align: left;
+/* =========================
+   Responsive
+========================= */
+@media (max-width:900px){
+  .form-row{ grid-template-columns: 1fr; }
+  .form-actions{ justify-content:flex-start; }
 }
-
-.tbl td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.tbl tr:nth-child(even) {
-    background: #fafafa;
-}
-
-.tbl tr:hover {
-    background: #f1f1f1;
-}
-
-.tbl td:last-child {
-    white-space: nowrap;
-}
-
-/* Tombol Hapus */
-.tbl a {
-    display: inline-block;
-    padding: 5px 10px;
-    background: #ff6b6b;
-    color: white;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-.tbl a:hover {
-    background: #e65a5a;
-}
-
-/* Form Update */
-.tbl form input,
-.tbl form select,
-.tbl form button {
-    margin: 2px 0;
-    padding: 5px;
-    font-size: 13px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.tbl form button {
-    background: #4CAF50;
-    color: white;
-    cursor: pointer;
-}
-
-.tbl form button:hover {
-    background: #45a049;
+@media (max-width:640px){
+  .tbl{ min-width:640px; }
+  .tbl th, .tbl td{ padding:10px 12px; font-size:13.5px; }
 }

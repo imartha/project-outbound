@@ -1,76 +1,210 @@
-/* Styling halaman Kelola Jadwal */
-.content {
-    padding: 20px;
-    background: #F0F3FA;
-    border-radius: 10px;
-    margin-top: 20px;
+/* =========================
+   UMUM & RESPONSIVE
+========================= */
+@media (max-width:1024px){
+  .main > .content,
+  .content{ padding-left:24px; }
 }
 
-/* Judul */
-.content h2 {
-    margin-bottom: 20px;
-    color: #333;
-    font-size: 22px;
-    font-weight: bold;
+.content h2{
+  margin:0 0 14px;
+  color:#003BB5;
+  font-weight:800;
+  font-size:clamp(20px,2.1vw,26px);
 }
 
-/* Form Tambah Jadwal */
-.form-jadwal {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+/* =========================
+   TOMBOL TAMBAH
+========================= */
+.btn-tambah{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:10px 16px;
+  border-radius:10px;
+  background:#004DE6;
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14.5px;
+  border:1px solid transparent;
+  box-shadow:0 4px 12px rgba(0,77,230,.18);
+  transition:transform .05s, background .2s, box-shadow .2s, filter .15s;
+}
+.btn-tambah:hover{ background:#003BB5; box-shadow:0 6px 16px rgba(0,59,181,.22); }
+.btn-tambah:active{ transform:translateY(1px); }
+
+/* =========================
+   TABEL
+========================= */
+.tbl{
+  width:100%;
+  border-collapse:collapse;
+  min-width:900px;
+  table-layout:fixed;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  margin-top:10px;
 }
 
-.form-jadwal input,
-.form-jadwal select,
-.form-jadwal textarea,
-.form-jadwal button {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.tbl th, .tbl td{
+  padding:14px 16px;
+  border-bottom:1px solid #eee;
+  font-size:14.5px;
+  color:#1f2937;
+  vertical-align:middle;
+  text-align:left;
 }
 
-/* tombol */
-.form-jadwal button {
-    background: #BAAEE0;
-    border: none;
-    cursor: pointer;
-    transition: 0.3s;
+.tbl thead th{
+  background:#004DE6 !important;
+  color:#fff !important;
+  font-weight:800;
+  font-size:15px;
+  border-bottom:1px solid #003BB5;
+  position:sticky; top:0; z-index:1;
+  white-space:nowrap;
 }
 
-.form-jadwal button:hover {
-    background: #9c90d9;
+.tbl td{ overflow-wrap:anywhere; }
+.tbl tbody tr:nth-child(even) td{ background:#FAFAFA; }
+
+.tbl th:nth-child(1), .tbl td:nth-child(1){ width:56px; text-align:center; }
+.tbl th:nth-child(2), .tbl td:nth-child(2){ width:160px; }
+.tbl th:nth-child(3), .tbl td:nth-child(3){
+  width:120px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:14px; color:#374151;
+}
+.tbl th:nth-child(7), .tbl td:nth-child(7){ width:190px; }
+
+.tbl td:nth-child(7){
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:flex-start;
+  padding-top:12px;
+  padding-bottom:12px;
 }
 
-/* Tabel */
-.tbl {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+/* Tombol aksi */
+.btn-update,
+.btn-delete{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:13.5px;
+  border:1px solid transparent;
+  transition:transform .05s, filter .15s;
+}
+.btn-update{ background:#E6F0FF; color:#003BB5; border-color:#C8DAFF; }
+.btn-delete{ background:#FEE2E2; color:#B91C1C; border-color:#FCA5A5; }
+.btn-update:hover{ filter:brightness(0.98); }
+.btn-delete:hover{ filter:brightness(0.97); }
+.btn-update:active, .btn-delete:active{ transform:translateY(1px); }
+
+.tbl .no-data, .no-data{
+  text-align:center;
+  color:#6b7280;
+  padding:16px;
+  font-style:italic;
 }
 
-.tbl th {
-    background: #BAAEE0;
-    color: #333;
-    padding: 10px;
-    text-align: left;
+@media (max-width:640px){
+  .tbl{ min-width:760px; }
+  .tbl th, .tbl td{ padding:10px 12px; font-size:13.5px; }
 }
 
-.tbl td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+/* =========================
+   FORM UPDATE JADWAL
+========================= */
+.form-wrapper{
+  background:#fff;
+  padding:28px 32px;
+  border-radius:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  max-width:640px;
+  margin-top:16px;
+  border:1px solid #eee;
 }
 
-.tbl tr:nth-child(even) {
-    background: #fafafa;
+.form-wrapper label{
+  display:block;
+  font-weight:700;
+  color:#1f2937;
+  font-size:14.5px;
+  margin-bottom:6px;
 }
 
-.tbl tr:hover {
-    background: #f1f1f1;
+.form-wrapper input[type="text"],
+.form-wrapper input[type="date"],
+.form-wrapper input[type="time"],
+.form-wrapper textarea{
+  width:100%;
+  padding:10px 12px;
+  font-size:14.5px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  outline:none;
+  transition:border-color .15s, box-shadow .15s;
 }
 
-.tbl td:last-child {
-    white-space: nowrap;
+.form-wrapper input:focus,
+.form-wrapper textarea:focus{
+  border-color:#004DE6;
+  box-shadow:0 0 0 2px rgba(0,77,230,.15);
+}
+
+.form-wrapper textarea{
+  resize:vertical;
+  min-height:80px;
+}
+
+.form-actions{
+  margin-top:18px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.btn-submit{
+  background:#004DE6;
+  color:#fff;
+  padding:10px 16px;
+  border:none;
+  border-radius:10px;
+  font-weight:700;
+  font-size:14.5px;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,77,230,.18);
+  transition:transform .05s, background .2s, box-shadow .2s, filter .15s;
+}
+.btn-submit:hover{ background:#003BB5; box-shadow:0 6px 16px rgba(0,59,181,.22); }
+.btn-submit:active{ transform:translateY(1px); }
+
+.btn-cancel{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:700;
+  font-size:14.5px;
+  color:#374151;
+  background:#F3F4F6;
+  text-decoration:none;
+  border:1px solid #E5E7EB;
+  transition:background .2s, filter .15s, transform .05s;
+}
+.btn-cancel:hover{ background:#E5E7EB; filter:brightness(0.98); }
+.btn-cancel:active{ transform:translateY(1px); }
+
+@media (max-width:640px){
+  .form-wrapper{ padding:20px; }
+  .form-wrapper input,
+  .form-wrapper textarea{ font-size:13.5px; }
 }

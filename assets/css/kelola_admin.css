@@ -1,0 +1,163 @@
+
+#kelola-admin h2{
+  margin:0 0 14px;
+  color:#003BB5;
+  font-weight:800;
+  font-size:clamp(20px,2.1vw,26px);
+}
+
+/* =========================
+   FORM TAMBAH ADMIN
+========================= */
+#kelola-admin form{
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  padding:16px;
+  display:grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap:10px;
+  align-items:center;
+  margin:10px 0 16px;
+}
+#kelola-admin input[type="text"],
+#kelola-admin input[type="password"]{
+  padding:10px 12px;
+  border:1px solid #D1D5DB;
+  border-radius:10px;
+  font-size:14.5px;
+  outline:none;
+  background:#fff;
+  transition:border-color .15s, box-shadow .15s;
+}
+#kelola-admin input[type="text"]:focus,
+#kelola-admin input[type="password"]:focus{
+  border-color:#004DE6;
+  box-shadow:0 0 0 3px rgba(0,77,230,.12);
+}
+#kelola-admin .btn-tambah{
+  padding:10px 16px;
+  border-radius:10px;
+  border:1px solid transparent;
+  background:#004DE6;
+  color:#fff;
+  font-weight:700;
+  font-size:14.5px;
+  line-height:1;
+  cursor:pointer;
+  box-shadow:0 4px 12px rgba(0,77,230,.18);
+  transition:transform .05s, background .2s, box-shadow .2s, filter .15s;
+}
+#kelola-admin .btn-tambah:hover{ background:#003BB5; box-shadow:0 6px 16px rgba(0,59,181,.22); }
+#kelola-admin .btn-tambah:active{ transform:translateY(1px); }
+
+/* =========================
+   TABEL — match Kelola Peserta
+========================= */
+#kelola-admin .tbl-wrap{
+  width:100%;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  overflow:auto;
+}
+#kelola-admin .tbl{
+  width:100%;
+  border-collapse:collapse;
+  min-width:780px;
+  table-layout:fixed;
+}
+#kelola-admin .tbl th,
+#kelola-admin .tbl td{
+  padding:14px 16px;
+  border-bottom:1px solid #eee;
+  font-size:14.5px;
+  color:#1f2937;
+  vertical-align:middle;
+  overflow-wrap:anywhere;
+  text-align:left;
+  min-height:48px;
+}
+/* header biru sticky */
+#kelola-admin .tbl thead th,
+#kelola-admin .tbl > tr:first-child > th{
+  background:#004DE6 !important;
+  color:#fff !important;
+  font-weight:800;
+  font-size:15px;
+  border-bottom:1px solid #003BB5;
+  position:sticky; top:0; z-index:1;
+}
+/* zebra */
+#kelola-admin .tbl tbody tr:nth-child(even) td{ background:#FAFAFA; }
+
+/* lebar kolom (4 kolom) */
+#kelola-admin .tbl th:nth-child(1),
+#kelola-admin .tbl td:nth-child(1){ width:56px; text-align:center; }  /* ID */
+#kelola-admin .tbl th:nth-child(3),
+#kelola-admin .tbl td:nth-child(3){ width:220px; }                    /* Tanggal Dibuat */
+#kelola-admin .tbl th:nth-child(4),
+#kelola-admin .tbl td:nth-child(4){ width:190px; }                    /* Aksi */
+
+/* kolom Aksi rapi & center vertikal */
+#kelola-admin .tbl td:nth-child(4){
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:flex-start;
+  padding-top:12px;
+  padding-bottom:12px;
+}
+
+/* tombol aksi (selaras dgn peserta) */
+#kelola-admin .btn-hapus{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:13.5px;
+  line-height:1.2;
+  white-space:nowrap;
+  color:#B91C1C;
+  background:#FEE2E2;
+  border:1px solid #FCA5A5;
+  transition:transform .05s, filter .15s;
+}
+#kelola-admin .btn-hapus:hover{ filter:brightness(0.97); }
+#kelola-admin .btn-hapus:active{ transform:translateY(1px); }
+
+/* pill “Anda” */
+#kelola-admin .you-pill{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12.5px;
+  font-weight:800;
+  color:#374151;
+  background:#F3F4F6;
+}
+
+/* baris kosong/info */
+#kelola-admin .no-data{
+  text-align:center;
+  color:#6b7280;
+  padding:16px;
+  font-style:italic;
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width:1024px){
+  .topbar{ margin-left:0; width:100%; left:0; }
+  #kelola-admin.container{ margin-left:0; padding-top:96px; }
+  #kelola-admin form{ grid-template-columns:1fr; }
+  #kelola-admin .btn-tambah{ width:100%; }
+}
+@media (max-width:640px){
+  #kelola-admin .tbl th, #kelola-admin .tbl td{ padding:10px 12px; font-size:13.5px; }
+  #kelola-admin .tbl{ min-width:640px; }
+}

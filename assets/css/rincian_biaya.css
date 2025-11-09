@@ -1,0 +1,160 @@
+/* Judul */
+.main-content h3 {
+  font-size: 20px;
+  color:#333;
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+
+/* Kartu Rincian */
+.rincian-card {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.muted {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* Biaya Total */
+.biaya-total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.harga {
+  font-size: 22px;
+  font-weight: 800;
+  color: #092357;
+}
+
+.keterangan {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Daftar Fasilitas */
+.fasilitas {
+  margin: 0 0 16px 18px;
+  padding: 0;
+  color: #374151;
+  line-height: 1.6;
+}
+
+.fasilitas li {
+  margin: 4px 0;
+}
+
+/* Catatan */
+.catatan {
+  background-color: #F9FBFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #374151;
+  margin-bottom: 20px;
+}
+
+.catatan strong {
+  color: #003BB5;
+}
+
+/* Metode Pembayaran */
+.metode-pembayaran h4 {
+  color: #003BB5;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.payment-box {
+  background: #fff;
+  border: 1px solid #E5E7EB;
+  border-left: 5px solid #004DE6;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+
+.payment-box p {
+  margin: 6px 0;
+  color: #1f2937;
+}
+
+.rekening {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  background: #F4F7FF;
+  border: 1px dashed #C7D2FE;
+  color: #004DE6;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.payment-box .note {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.payment-box a {
+  color: #004DE6;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.payment-box a:hover {
+  color: #003BB5;
+  text-decoration: underline;
+}
+
+/* Footer Catatan */
+.footer-note {
+  font-size: 13px;
+  color: #6b7280;
+  border-top: 1px solid #E5E7EB;
+  padding-top: 12px;
+  margin-top: 10px;
+}
+
+/* Pesan sukses/error */
+.success,
+.error {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.success {
+  background: #E6F6EE;
+  color: #0F5132;
+  border: 1px solid #A3E2C1;
+}
+
+.error {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FCA5A5;
+}
+
+/* Responsif */
+@media (max-width: 640px) {
+  .main-content {
+    padding: 16px;
+  }
+
+  .harga {
+    font-size: 22px;
+  }
+
+  .payment-box {
+    padding: 12px;
+  }
+}

@@ -1,0 +1,90 @@
+.judul-halaman {
+  font-size: 22px;
+  color: #003BB5;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.subjudul {
+  font-size: 22;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Pemisah tanggal */
+.tanggal-separator {
+  background-color: #004DE6;
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Tabel */
+.table-wrap {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.table-jadwal {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-jadwal thead {
+  background-color: #003BB5;
+  color: #fff;
+}
+
+.table-jadwal thead th {
+  padding: 10px;
+  font-size: 14px;
+  text-align: left;
+}
+
+.table-jadwal tbody td {
+  border-top: 1px solid #eee;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.no-data {
+  text-align: center;
+  color: #777;
+  background: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  font-style: italic;
+  margin-top: 20px;
+}
+
+/* Hover row */
+.table-jadwal tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Responsif */
+@media (max-width: 640px) {
+  .main-content {
+    padding: 16px;
+  }
+
+  .tanggal-separator {
+    font-size: 15px;
+  }
+
+  .table-jadwal thead th,
+  .table-jadwal tbody td {
+    font-size: 13px;
+    padding: 8px;
+  }
+}

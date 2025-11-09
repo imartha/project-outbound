@@ -1,0 +1,103 @@
+
+main.content h2{
+  margin:0 0 8px;
+  color:#003BB5;
+  font-weight:750;
+  font-size:clamp(20px,2.1vw,26px);
+}
+main.content > p{
+  margin:0 0 10px;
+  color:#374151;
+  font-size:15.5px;
+}
+
+.cards{
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+.card{
+  min-width: 0; 
+}
+
+.card strong{
+  display:block;
+  font-weight:600;
+  color:#111827;
+  margin-bottom:6px;
+}
+.card p{
+  margin:0;
+  font-size:18px;
+  color:#1f2937;
+}
+
+/* Status pembayaran (pakai kelas di span/p) */
+.status-badge{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12.5px;
+  font-weight:800;
+  line-height:1;
+}
+.status-lunas   { background:#D1FAE5; color:#065F46; }  /* hijau */
+.status-pending { background:#FEF3C7; color:#92400E; }  /* kuning */
+.status-reject  { background:#FEE2E2; color:#B91C1C; }  /* merah */
+.status-none    { background:#F3F4F6; color:#374151; }  /* abu */
+
+/* ========== Section umum ========== */
+section{
+  margin-top:40px;
+}
+section h3{
+  margin:0;
+  color:#003BB5;
+  font-weight:750;
+  font-size:clamp(19,2.1vw,26px);
+}
+section p{
+  margin-top:10px;
+  max-width:800px;
+  text-align: justify;
+  line-height:1.65;
+  color:#1f2937;
+  font-size:15.5px;
+}
+
+.gallery{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+.gallery img{
+  width: 100%;
+  height: 200px;         
+  object-fit: cover;
+  display: block;
+}
+.gallery .img-box{
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid #eee;
+  box-shadow:0 4px 12px rgba(0,0,0,.06);
+}
+
+
+/* ========== Utilities ========== */
+.text-green { color:#065F46; }
+.text-red   { color:#B91C1C; }
+.text-amber { color:#92400E; }
+.text-gray  { color:#374151; }
+/* Opsional: kalau mau TANPA scroll dan tetap wrap di layar kecil, 
+   hapus overflow-x di .cards dan aktifkan breakpoint ini: */
+@media (max-width: 900px){
+  .cards{ grid-template-columns: 1fr 1fr; } /* 2 kolom */
+}
+@media (max-width: 640px){
+  .cards{ grid-template-columns: 1fr; }     /* 1 kolom di HP kecil */
+}

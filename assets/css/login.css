@@ -1,125 +1,167 @@
-/* ====== Global Reset ====== */
-* {
+/* ===============================
+   LOGIN PAGE - TRANSPARAN STYLE
+=================================*/
+:root {
+  --primary: #003BB5;      /* Biru utama */
+  --accent: #002f8e;       /* Biru tua */
+  --text-light: #fff;
+  --text-dark: #333;
+}
+
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* ====== Background ====== */
-body {
-  min-height: 100vh;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0d47a1, #1565c0, #1e88e5);
-  background-attachment: fixed;
-  background-size: 300% 300%;
-  animation: gradientMove 12s ease infinite alternate;
+  justify-content: center;
+  background: url('../images/outbound3.jpg') no-repeat center center/cover;
+  position: relative;
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
+/* Overlay gelap lembut */
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
 }
 
-/* ====== Login Box ====== */
+/* Box utama */
 .login-box {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  padding: 34px 32px;
+  position: relative;
+  z-index: 1;
+  width: 340px;
+  padding: 32px 26px;
   border-radius: 18px;
-  width: 100%;
-  max-width: 380px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
   text-align: center;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-  animation: fadeIn 1s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-light);
+  animation: fadeInUp 0.7s ease-out;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* ====== Judul ====== */
+/* Judul */
 .login-box h2 {
+  font-size: 22px;
   margin-bottom: 20px;
-  font-size: 26px;
-  font-weight: bold;
-  color: #ffffff;
-  letter-spacing: 1px;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  font-weight: 600;
+  color: #fff;
 }
 
-/* ====== Error Message ====== */
-.login-box p {
-  margin-bottom: 10px;
-  font-size: 14px;
-  color: #ff4d4d;
-}
-
-/* ====== Labels ====== */
+/* Label */
 .login-box label {
   display: block;
   text-align: left;
-  font-size: 13px;
-  color: #f0f4ff;
-  margin-bottom: 3px;
-  font-weight: 500;
+  margin: 10px 0 6px;
+  color: #eaeaea;
+  font-size: 13.5px;
 }
 
-/* ====== Input Fields ====== */
+/* Input field */
 .login-box input[type="text"],
 .login-box input[type="password"] {
   width: 100%;
-  padding: 11px 14px;
-  margin: 4px 0 10px 0;   /* rapat */
-  border: none;
-  border-radius: 10px;
-  outline: none;
+  height: 45px;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
   font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  margin-bottom: 14px;
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.9);
 }
 
-.login-box input[type="text"]:focus,
-.login-box input[type="password"]:focus {
-  box-shadow: 0 0 10px rgba(33, 150, 243, 0.9);
-  border: 1px solid #1976d2;
-  background: #fff;
+.login-box input::placeholder {
+  color: #ccc;
+  font-size: 15px;
 }
 
-/* ====== Tombol Login ====== */
+.login-box input:focus {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 8px rgba(0, 59, 181, 0.4);
+}
+
+/* Tombol login */
 .login-box button {
   width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  background: linear-gradient(135deg, #1565c0, #1e88e5);
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
+  height: 45px;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  transition: 0.3s;
 }
 
 .login-box button:hover {
-  transform: translateY(-2px) scale(1.03);
-  background: linear-gradient(135deg, #0d47a1, #1565c0);
-  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  transform: scale(1.02);
 }
 
-/* ====== Responsif ====== */
+/* Pesan error */
+.login-box p[style*="color:red"] {
+  color: #ff6b6b !important;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+/* ===============================
+   BAGIAN BUAT AKUN (REGISTER LINK)
+=================================*/
+.login-box p {
+  margin-top: 18px;
+  font-size: 13.5px;
+  color: #eaeaea;
+}
+
+.login-box a {
+  color: #4ea8ff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.login-box a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Tambahan efek garis tipis */
+.login-box p::before {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 20px 0 14px;
+}
+
+/* Animasi muncul lembut */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsif untuk HP */
 @media (max-width: 480px) {
   .login-box {
-    margin: 0 15px;
-    padding: 26px 22px;
-  }
-  .login-box h2 {
-    font-size: 22px;
+    width: 90%;
+    padding: 26px 20px;
   }
 }

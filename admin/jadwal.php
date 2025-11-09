@@ -5,8 +5,10 @@ include '../templates/header.php';
 include '../templates/sidebar_admin.php';
 
 // Ambil data jadwal
-$result = $koneksi->query("SELECT * FROM jadwal ORDER BY tanggal ASC, waktu ASC");
+$result = $koneksi->query("SELECT * FROM jadwal_kegiatan ORDER BY tanggal ASC, waktu ASC");
 ?>
+
+<link rel="stylesheet" href="../assets/css/jadwal_admin.css">
 
 <div class="content">
     <h2>Kelola Jadwal</h2>
@@ -14,6 +16,7 @@ $result = $koneksi->query("SELECT * FROM jadwal ORDER BY tanggal ASC, waktu ASC"
     <br><br>
 
     <table class="tbl">
+        <thead>
         <tr>
             <th>No</th>
             <th>Tanggal</th>
@@ -23,6 +26,8 @@ $result = $koneksi->query("SELECT * FROM jadwal ORDER BY tanggal ASC, waktu ASC"
             <th>Keterangan</th>
             <th>Aksi</th>
         </tr>
+        </thead>
+
         <?php 
         if ($result && $result->num_rows > 0):
             $no = 1;

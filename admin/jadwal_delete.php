@@ -4,7 +4,7 @@ include '../utils/auth_check.php';
 
 $id = $_GET['id'] ?? 0;
 
-$stmt = $koneksi->prepare("DELETE FROM jadwal WHERE id=?");
+$stmt = $koneksi->prepare("DELETE FROM jadwal_kegiatan WHERE id=?");
 $stmt->bind_param("i", $id);
 
 if ($stmt->execute()) {

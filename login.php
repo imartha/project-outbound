@@ -13,8 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     $res = $stmt->get_result();
     $user = $res->fetch_assoc();
+    $stmt->close();
 
-    if ($user && $password === $user['password']) {
+    if ($user && password_verify($password, $user['password'])) {
         // set session
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
@@ -51,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" name="password" required><br><br>
             <button type="submit">Login</button>
         </form>
+        <p style="margin-top:12px;">Belum punya akun? <a href="register.php">Buat Akun</a></p>
     </div>
 </body>
 </html>

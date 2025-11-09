@@ -1,105 +1,197 @@
-/* ====== FORM CONTAINER ====== */
-.content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;   /* horizontal center */
-  justify-content: center; /* vertical center */
-  min-height: 80vh;
-  text-align: center;
+
+
+.content h2{
+  margin:0 0 14px;
+  color:#003BB5;
+  font-weight:800;
+  font-size:clamp(20px,2.1vw,26px);
 }
 
-.content h2 {
-  margin-bottom: 15px;
-  color: #4A4A6A;
+/* =========================
+   FORM CARI & TOMBOL
+========================= */
+.form-cari{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+  margin:10px 0 12px;
+}
+.form-cari input[type="text"]{
+  padding:10px 12px;
+  border:1px solid #D1D5DB;
+  border-radius:10px;
+  min-width:260px;
+  font-size:14.5px;
+  outline:none;
+  transition:border-color .15s, box-shadow .15s;
+  background:#fff;
+}
+.form-cari input[type="text"]:focus{
+  border-color:#004DE6;
+  box-shadow:0 0 0 3px rgba(0,77,230,.12);
 }
 
-/* ====== FORM STYLE ====== */
-.content form {
-  background: #fff;
-  padding: 20px 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: left;
+.btn-cari,
+.btn-reset,
+.btn-tambah{
+  padding:10px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14.5px;
+  line-height:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  cursor:pointer;
+  transition:transform .05s, filter .15s, background .2s, box-shadow .2s;
+  border:1px solid transparent;
 }
 
-.content form input[type="text"],
-.content form input[type="tel"],
-.content form select {
-  width: 100%;
-  padding: 8px 12px;        /* lebih kecil */
-  margin: 5px 0 10px 0;     /* lebih rapat */
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border 0.3s ease;
-  box-sizing: border-box;
+/* tombol utama (Cari & Tambah) */
+.btn-cari,
+.btn-tambah{
+  background:#004DE6;
+  color:#fff;
+  box-shadow:0 4px 12px rgba(0,77,230,.18);
+}
+.btn-cari:hover,
+.btn-tambah:hover{ background:#003BB5; box-shadow:0 6px 16px rgba(0,59,181,.22); }
+.btn-cari:active,
+.btn-tambah:active{ transform:translateY(1px); }
+
+/* tombol sekunder (Reset) */
+.btn-reset{
+  background:#fff;
+  color:#111827;
+  border-color:#D1D5DB;
+}
+.btn-reset:hover{ filter:brightness(0.98); }
+
+/* dorong tombol tambah ke kanan */
+.form-cari .btn-tambah{ margin-left:auto; }
+
+/* =========================
+   TABEL + WRAP
+========================= */
+.tbl-wrap{
+  width:100%;
+  background:#fff;
+  border:1px solid #eee;
+  border-radius:14px;
+  box-shadow:0 6px 16px rgba(0,0,0,.06);
+  overflow:auto;                 /* scroll horizontal jika perlu */
 }
 
-.content form input:focus,
-.content form select:focus {
-  border-color: #8b6fda;
-  outline: none;
+.tbl{
+  width:100%;
+  border-collapse:collapse;
+  min-width:780px;               /* cegah pecah layout di layar kecil */
+  table-layout:fixed;            /* kolom rata */
 }
 
-/* ====== BUTTON WRAPPER ====== */
-.form-actions {
-  display: flex;
-  justify-content: space-between;  /* Simpan kiri, Batal kanan */
-  align-items: center;
-  margin-top: 10px;
+/* sel tabel */
+.tbl th, .tbl td{
+  padding:14px 16px;             /* tinggi baris nyaman */
+  border-bottom:1px solid #eee;
+  font-size:14.5px;
+  color:#1f2937;
+  vertical-align:middle;         /* center vertikal */
+  overflow-wrap:anywhere;        /* patah kata panjang */
+  text-align:left;
+  min-height:48px;
 }
 
-/* ====== BUTTON STYLE ====== */
-.content form button {
-  padding: 10px 16px;
-  background: #8b6fda;
-  color: white;
-  font-size: 14px;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
+/* Header biru + lengket */
+.tbl thead th,
+.tbl > tr:first-child > th{
+  background:#004DE6 !important;
+  color:#fff !important;
+  font-weight:800;
+  font-size:15px;
+  border-bottom:1px solid #003BB5;
+  position:sticky; top:0; z-index:1;
 }
 
-.content form button:hover {
-  background: #7258c9;
+/* Zebra */
+.tbl tbody tr:nth-child(even) td,
+.tbl tr:nth-child(even) td{ background:#FAFAFA; }
+
+/* Lebar kolom utama */
+.tbl th:nth-child(1), .tbl td:nth-child(1){ width:56px; text-align:center; } /* No */
+.tbl th:nth-child(5), .tbl td:nth-child(5){ width:140px; }                   /* No HP */
+.tbl th:nth-child(6), .tbl td:nth-child(6){ width:120px; text-align:center; }/* Kelamin */
+.tbl th:nth-child(7), .tbl td:nth-child(7){ width:190px; }                   /* Aksi */
+
+/* =========================
+   KOLOM AKSI
+========================= */
+.tbl td:nth-child(7){
+  display:flex;
+  gap:8px;
+  align-items:center;            /* center vertikal tombol */
+  justify-content:flex-start;
+  padding-top:12px;              /* haluskan posisi relatif garis */
+  padding-bottom:12px;
 }
 
-.content form a {
-  padding: 9px 14px;
-  border-radius: 6px;
-  background: #f0f0f0;
-  color: #444;
-  font-size: 14px;
-  text-decoration: none;
+/* Tombol aksi */
+.btn-update, .btn-delete{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:13.5px;
+  line-height:1.2;
+  white-space:nowrap;
+  transition:transform .05s, filter .15s;
+  border:1px solid transparent;
+}
+.btn-update{ background:#E6F0FF; color:#003BB5; border-color:#C8DAFF; }
+.btn-delete{ background:#FEE2E2; color:#B91C1C; border-color:#FCA5A5; }
+.btn-update:hover{ filter:brightness(0.98); }
+.btn-delete:hover{ filter:brightness(0.97); }
+.btn-update:active, .btn-delete:active{ transform:translateY(1px); }
+
+/* =========================
+   BADGE KELAMIN (L/P)
+========================= */
+.badge-sex{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12.5px;
+  font-weight:800;
+  line-height:1;
+}
+.badge-L{ background:#D1FAE5; color:#065F46; }  /* L */
+.badge-P{ background:#FCE7F3; color:#9D174D; }  /* P */
+
+/* =========================
+   BARIS TANPA DATA
+========================= */
+.tbl .no-data,
+.no-data{
+  text-align:center;
+  color:#6b7280;
+  padding:16px;
+  font-style:italic;
 }
 
-.content form a:hover {
-  background: #ddd;
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width:1024px){
+  .topbar{ margin-left:0; width:100%; left:0; }
+  .main > .content,
+  .content{ margin-left:0; padding-top:96px; }
 }
-
-.content form select {
-  width: 100%;
-  padding: 8px 12px;
-  margin: 5px 0 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border 0.3s ease;
-  box-sizing: border-box;
-  background-color: #fff;   /* sama dengan input */
-  appearance: none;         /* hilangkan default arrow browser */
-  -webkit-appearance: none; /* untuk Safari/Chrome */
-  -moz-appearance: none;    /* untuk Firefox */
-}
-
-/* optional: tambahkan icon panah custom */
-.content form select {
-  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'12'%20height%3D'8'%20viewBox%3D'0%200%2012%208'%20xmlns%3D'http://www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M1%201L6%206L11%201'%20stroke%3D'%23999'%20stroke-width%3D'2'%20fill%3D'none'%20/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 12px;
+@media (max-width:640px){
+  .form-cari .btn-tambah{ width:100%; order:3; }
+  .btn-cari, .btn-reset{ flex:1; }
+  .tbl th, .tbl td{ padding:10px 12px; font-size:13.5px; }
+  .tbl{ min-width:640px; }
 }

@@ -5,7 +5,13 @@ include '../templates/header.php';
 include '../templates/sidebar_admin.php';
 
 $id = $_GET['id'] ?? 0;
-$stmt = $koneksi->prepare("SELECT * FROM jadwal WHERE id=?");
+
+// --- CEK QUERY ---
+$stmt = $koneksi->prepare("SELECT * FROM jadwal_kegiatan WHERE id=?");
+if (!$stmt) {
+    die("Error prepare SELECT: " . $koneksi->error);
+}
+
 $stmt->bind_param("i", $id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -16,6 +22,7 @@ if (!$jadwal) {
     exit;
 }
 
+// --- UPDATE DATA ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tanggal    = $_POST['tanggal'];
     $waktu      = $_POST['waktu'];
@@ -23,7 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lokasi     = $_POST['lokasi'];
     $keterangan = $_POST['keterangan'];
 
-    $stmt = $koneksi->prepare("UPDATE jadwal SET tanggal=?, waktu=?, kegiatan=?, lokasi=?, keterangan=?, updated_at=NOW() WHERE id=?");
+    $stmt = $koneksi->prepare("UPDATE jadwal_kegiatan SET tanggal=?, waktu=?, kegiatan=?, lokasi=?, keterangan=?, updated_at=NOW() WHERE id=?");
+    if (!$stmt) {
+        die("Error prepare UPDATE: " . $koneksi->error);
+    }
+
     $stmt->bind_param("sssssi", $tanggal, $waktu, $kegiatan, $lokasi, $keterangan, $id);
 
     if ($stmt->execute()) {
@@ -36,20 +47,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+<link rel="stylesheet" href="../assets/css/jadwal_admin.css">
+
 <div class="content">
-    <h2>Update Jadwal</h2>
+  <h2>Update Jadwal Kegiatan</h2>
+
+  <div class="form-wrapper">
     <form method="post">
-        <label>Tanggal:</label>
-        <input type="date" name="tanggal" value="<?= $jadwal['tanggal'] ?>" required><br><br>
+      <label for="tanggal">Tanggal:</label>
+      <input type="date" id="tanggal" name="tanggal" value="<?= htmlspecialchars($jadwal['tanggal']) ?>" required>
 
-        <label>Waktu:</label>
-        <input type="time" name="waktu" value="<?= $jadwal['waktu'] ?>" required><br><br>
+      <label for="waktu">Waktu:</label>
+      <input type="time" id="waktu" name="waktu" value="<?= htmlspecialchars($jadwal['waktu']) ?>" required>
 
-        <input type="text" name="kegiatan" value="<?= htmlspecialchars($jadwal['kegiatan']) ?>" required><br><br>
-        <input type="text" name="lokasi" value="<?= htmlspecialchars($jadwal['lokasi']) ?>" required><br><br>
-        <textarea name="keterangan" rows="3"><?= htmlspecialchars($jadwal['keterangan']) ?></textarea><br><br>
+      <label for="kegiatan">Kegiatan:</label>
+      <input type="text" id="kegiatan" name="kegiatan" value="<?= htmlspecialchars($jadwal['kegiatan']) ?>" required>
 
-        <button type="submit">Update</button>
-        <a href="jadwal.php" style="margin-left:10px;">Batal</a>
+      <label for="lokasi">Lokasi:</label>
+      <input type="text" id="lokasi" name="lokasi" value="<?= htmlspecialchars($jadwal['lokasi']) ?>" required>
+
+      <label for="keterangan">Keterangan:</label>
+      <textarea id="keterangan" name="keterangan" rows="3"><?= htmlspecialchars($jadwal['keterangan']) ?></textarea>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-submit">Update</button>
+        <a href="jadwal.php" class="btn-cancel">Batal</a>
+      </div>
     </form>
+  </div>
 </div>

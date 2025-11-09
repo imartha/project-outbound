@@ -1,7 +1,7 @@
-/* Header / Topbar */
+/* === HEADER / TOPBAR (Versi Biru CTI) === */
 .topbar {
-    background-color: #BAAEE0; /* ungu lembut */
-    color: #fff;
+    background-color: #004DE6;   /* biru CTI elegan */
+    color: #ffffff;
     padding: 8px 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
@@ -25,7 +25,7 @@
 }
 
 .topbar .user-info a {
-    color: #F0F3FA; /* biru muda */
+    color: #E0E7FF;              /* biru muda lembut */
     text-decoration: none;
     font-weight: 500;
     margin-left: 8px;
@@ -33,5 +33,5 @@
 }
 
 .topbar .user-info a:hover {
-    color: #fff;
+    color: #fff;                 /* tetap kontras saat hover */
 }

@@ -6,21 +6,31 @@ $page_title = "Admin Dashboard";
 /* ===== Statistik ===== */
 $total_peserta = 0;
 $total_payment = 0;
-$pending = 0;
+$total_tercatat = 0;
+$total_pending = 0;
 
 if ($res = $koneksi->query("SELECT COUNT(*) AS cnt FROM peserta")) {
-  $row = $res->fetch_assoc(); $total_peserta = (int)($row['cnt'] ?? 0);
+  $row = $res->fetch_assoc(); 
+  $total_peserta = (int)($row['cnt'] ?? 0);
   $res->free();
 }
 
-if ($res = $koneksi->query("SELECT IFNULL(SUM(amount_paid),0) AS tot FROM payment_history")) {
-  $row = $res->fetch_assoc(); $total_payment = (int)($row['tot'] ?? 0);
+if ($res = $koneksi->query("SELECT IFNULL(SUM(amount_paid),0) AS tot FROM payment_history WHERE status='approved'")) {
+  $row = $res->fetch_assoc(); 
+  $total_payment = (int)($row['tot'] ?? 0);
   $res->free();
 }
 
-/* Jika punya kolom status di payment_history, ganti WHERE 1 sesuai kebutuhan */
-if ($res = $koneksi->query("SELECT COUNT(*) AS cnt FROM payment_history WHERE 1")) {
-  $row = $res->fetch_assoc(); $pending = (int)($row['cnt'] ?? 0);
+if ($res = $koneksi->query("SELECT COUNT(*) AS cnt FROM payment_history")) {
+  $row = $res->fetch_assoc(); 
+  $total_tercatat = (int)($row['cnt'] ?? 0);
+  $res->free();
+}
+
+/* === Tambahan: Menunggu Verifikasi === */
+if ($res = $koneksi->query("SELECT COUNT(*) AS cnt FROM payment_history WHERE status='pending'")) {
+  $row = $res->fetch_assoc(); 
+  $total_pending = (int)($row['cnt'] ?? 0);
   $res->free();
 }
 
@@ -38,8 +48,6 @@ $latest = $koneksi->query("
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title><?= $page_title ?? "Outbound Management" ?></title>
 
-  <!-- CSS utama dashboard -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/dashboard_admin.css">
 </head>
 <body>
@@ -51,7 +59,7 @@ $latest = $koneksi->query("
 
   <main class="content">
     <div class="content-wrap">
-      <h2>Selamat datang, Admin</h2>
+      <h2>Ringkasan Dashboard</h2>
 
       <div class="cards">
         <div class="card">
@@ -64,42 +72,12 @@ $latest = $koneksi->query("
         </div>
         <div class="card">
           Pembayaran Tercatat:
-          <strong><?= number_format($pending, 0, ',', '.') ?></strong>
+          <strong><?= number_format($total_tercatat, 0, ',', '.') ?></strong>
+        </div>
+        <div class="card card-warning">
+          Menunggu Verifikasi:
+          <strong><?= number_format($total_pending, 0, ',', '.') ?></strong>
         </div>
       </div>
 
-      <h3>Daftar Peserta</h3>
-      <table class="tbl">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nama</th>
-            <th>Telepon</th>
-            <th>Sekolah</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php if ($latest && $latest->num_rows > 0): ?>
-            <?php $i = 1; while ($row = $latest->fetch_assoc()): ?>
-              <tr>
-                <td><?= $i++ ?></td>
-                <td><?= htmlspecialchars($row['full_name']) ?></td>
-                <td><?= htmlspecialchars($row['phone']) ?></td>
-                <td><?= htmlspecialchars($row['nama_sekolah']) ?></td>
-              </tr>
-            <?php endwhile; ?>
-          <?php else: ?>
-            <tr>
-              <td colspan="4" style="text-align:center;color:#667085;">
-                Belum ada data peserta.
-              </td>
-            </tr>
-          <?php endif; ?>
-        </tbody>
-      </table>
-    </div>
-  </main>
-</div>
-
-</body>
-</html>
+     
